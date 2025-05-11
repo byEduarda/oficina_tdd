@@ -1,5 +1,5 @@
-function soma() {
-  return 4;
+function soma(a,b) {
+  return a + b
 }
 
 module.exports = soma

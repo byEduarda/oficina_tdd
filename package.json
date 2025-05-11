@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll"
   },
-   "type": "module",
+  "type": "module",
   "devDependencies": {
     "jest": "^29.5.0"
   }
