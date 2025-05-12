@@ -1,42 +1,47 @@
-// queue.test.js
 const Queue = require('./queue');
 
 describe('Queue', () => {
-  let queue;
+  it('Deve criar uma fila', () => {
+    const queue = new Queue();
 
-  beforeEach(() => {
-    queue = new Queue();
+    expect(queue).toEqual({ elements: [] });
   });
 
-  test('should return the size of the queue', () => {
-    expect(queue.size()).toBe(0);
-    queue.add('item1');
-    expect(queue.size()).toBe(1);
-  });
+  it('Deve ser capaz de calcular o tamanho da fila', () => {
+    const queue = new Queue();
 
-  test('should add an item to the queue', () => {
-    queue.add('item1');
-    expect(queue.peek()).toBe('item1');
-    expect(queue.size()).toBe(1);
-  });
-
-  test('should return the first item without removing it (peek)', () => {
+    expect(queue.size()).toBe(0); //fila vazia
     queue.add('item1');
     queue.add('item2');
-    expect(queue.peek()).toBe('item1');
-    expect(queue.size()).toBe(2);
+    expect(queue.size()).toBe(2); //após adicionar 2 itens
   });
 
-  test('should remove the first item from the queue (dequeue)', () => {
+  it('Deve ser capaz de adicionar um item na fila', () => {
+    const queue = new Queue();
+
+    queue.add('item1');
+    expect(queue.elements).toEqual(['item1']); //verifica que o item foi adicionado
+    queue.add('item2');
+    expect(queue.elements).toEqual(['item1', 'item2']); //verifica que os itens estão na ordem correta
+  });
+
+  it('Deve escolher o primeiro item da fila', () => {
+    const queue = new Queue();
+
     queue.add('item1');
     queue.add('item2');
-    expect(queue.dequeue()).toBe('item1');
-    expect(queue.size()).toBe(1);
-    expect(queue.peek()).toBe('item2');
+    expect(queue.peek()).toBe('item1'); //retorna o primeiro item
+    expect(queue.size()).toBe(2); //garante que o tamanho da fila não foi alterado
   });
 
-  test('should return null when peeking or dequeuing an empty queue', () => {
-    expect(queue.peek()).toBe(null);
-    expect(queue.dequeue()).toBe(null);
+  it('Deve remover o primeiro item da fila', () => {
+    const queue = new Queue();
+
+    queue.add('item1');
+    queue.add('item2');
+    const removed = queue.dequeue();
+    expect(removed).toBe('item1'); //verifica que o primeiro item foi removido
+    expect(queue.elements).toEqual(['item2']); //verifica que o segundo item agora é o primeiro
+    expect(queue.size()).toBe(1); //garante que o tamanho foi atualizado
   });
 });

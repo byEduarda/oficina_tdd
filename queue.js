@@ -1,23 +1,28 @@
-// queue.js
 class Queue {
+  elements;
+  
   constructor() {
-    this.items = [];
+    this.elements = [];
   }
-
+  
+  //retorna o tamanho da fila
   size() {
-    return this.items.length;
+    return this.elements.length;
   }
 
+  //adiciona um elemento à fila
   add(item) {
-    this.items.push(item);
+    this.elements.push(item);
   }
 
+  //retorna o primeiro elemento sem removê-lo
   peek() {
-    return this.items.length > 0 ? this.items[0] : null;
+    return this.elements.length > 0 ? this.elements[0] : null;
   }
 
+  //remove e retorna o primeiro elemento
   dequeue() {
-    return this.items.length > 0 ? this.items.shift() : null;
+    return this.elements.length > 0 ? this.elements.shift() : null;
   }
 }
 
